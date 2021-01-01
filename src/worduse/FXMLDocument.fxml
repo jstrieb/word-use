@@ -49,7 +49,7 @@
                </VBox.margin></Separator>
             <ScatterChart fx:id="chart" legendSide="RIGHT" legendVisible="false" title="Word Usage" VBox.vgrow="ALWAYS">
               <xAxis>
-                <NumberAxis label="Page" side="BOTTOM" />
+                <NumberAxis label="Paragraph" side="BOTTOM" />
               </xAxis>
               <yAxis>
                 <NumberAxis label="Number of Times Used" side="LEFT" />

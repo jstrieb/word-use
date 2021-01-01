@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,8 +23,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 
 /**
  *
@@ -72,19 +73,29 @@ public class FXMLDocumentController implements Initializable {
             return;
         }
         
+        /*
         XWPFWordExtractor extractor = new XWPFWordExtractor(document);
         String documentText = extractor.getText();
         
         String[] words = documentText.split("[^A-Za-z0-9]");
+        */
+        List<XWPFParagraph> paragraphs = document.getParagraphs();
         
         XYChart.Series data = new XYChart.Series();
         chart.getData().removeAll(chart.getData());
         chart.getData().add(data);
         
-        for (int i=0; i < words.length; i++) {
-            String w = words[i].toLowerCase();
-            if (word.equals(w)) {
-                data.getData().add(new XYChart.Data(i, 10));
+        for (int i=0; i < paragraphs.size(); i++) {
+            String[] words = paragraphs.get(i).getText().split("[^A-Za-z0-9]");
+            int count = 0;
+            for (String w : words) {
+                if (word.equals(w.toLowerCase())) {
+                    count++;
+                }
+            }
+            
+            if (count > 0) {
+                data.getData().add(new XYChart.Data(i, count));
             }
         }
     }
