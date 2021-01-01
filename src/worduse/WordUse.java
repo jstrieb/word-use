@@ -22,6 +22,7 @@ public class WordUse extends Application {
         
         Scene scene = new Scene(root);
         
+        stage.setTitle("Word Use Analysis");
         stage.setScene(scene);
         stage.show();
     }
