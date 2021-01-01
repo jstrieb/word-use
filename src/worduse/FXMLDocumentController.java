@@ -18,11 +18,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 
@@ -40,6 +42,8 @@ public class FXMLDocumentController implements Initializable {
     private TextField wordField;
     @FXML
     private ScatterChart chart;
+    @FXML
+    private ListView table;
     
     private File documentFile;
     
@@ -59,6 +63,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     public void handleGraph(ActionEvent event) {
+        // Load document
         String word = wordField.getText().toLowerCase();
         
         XWPFDocument document;
@@ -73,18 +78,29 @@ public class FXMLDocumentController implements Initializable {
             return;
         }
         
-        /*
+        // Create table
         XWPFWordExtractor extractor = new XWPFWordExtractor(document);
         String documentText = extractor.getText();
+        String[] wordArray = documentText.split("[^A-Za-z0-9]");
         
-        String[] words = documentText.split("[^A-Za-z0-9]");
-        */
+        int occurrences = 0;
+        for (String w : wordArray) {
+            if (w.toLowerCase().equals(word)) {
+                occurrences++;
+            }
+        }
+        
+        table.getItems().removeAll(table.getItems());
+        table.getItems().add("Number of occurrences: " + Integer.toString(occurrences));
+        
+        // Create chart
         List<XWPFParagraph> paragraphs = document.getParagraphs();
         
         XYChart.Series data = new XYChart.Series();
         chart.getData().removeAll(chart.getData());
         chart.getData().add(data);
         
+        int maxCount = 0;
         for (int i=0; i < paragraphs.size(); i++) {
             String[] words = paragraphs.get(i).getText().split("[^A-Za-z0-9]");
             int count = 0;
@@ -97,7 +113,15 @@ public class FXMLDocumentController implements Initializable {
             if (count > 0) {
                 data.getData().add(new XYChart.Data(i, count));
             }
+            
+            if (count > maxCount) {
+                maxCount = count;
+            }
         }
+        
+        data.getData().add(new XYChart.Data(paragraphs.size() - 1, 0));
+        
+        table.getItems().add("Most occurrences in a paragraph: " + Integer.toString(maxCount));
     }
     
     @Override
