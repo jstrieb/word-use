@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worduse.FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="500.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worduse.FXMLDocumentController">
    <children>
       <VBox prefHeight="209.0" prefWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
@@ -24,7 +24,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="310.0">
                            <children>
-                              <TextField fx:id="documentPathField" prefHeight="26.0" prefWidth="262.0" promptText="File path..." HBox.hgrow="ALWAYS">
+                              <TextField fx:id="documentPathField" editable="false" prefHeight="26.0" prefWidth="262.0" promptText="File path..." HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="5.0" top="5.0" />
                                  </HBox.margin>

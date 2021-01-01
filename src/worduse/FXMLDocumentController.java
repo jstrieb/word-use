@@ -51,7 +51,7 @@ public class FXMLDocumentController implements Initializable {
     public void handleBrowse(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Word Document");
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("Word Documents", "*.doc", "*.docx"));
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("Word Documents", "*.docx"));
         documentFile = fileChooser.showOpenDialog(root.getScene().getWindow());
         
         if (documentFile == null) return;
