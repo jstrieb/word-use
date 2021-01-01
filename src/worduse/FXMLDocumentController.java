@@ -97,7 +97,9 @@ public class FXMLDocumentController implements Initializable {
         List<XWPFParagraph> paragraphs = document.getParagraphs();
         
         XYChart.Series data = new XYChart.Series();
+        XYChart.Series line = new XYChart.Series();
         chart.getData().removeAll(chart.getData());
+        chart.getData().add(line);
         chart.getData().add(data);
         
         int maxCount = 0;
@@ -112,6 +114,7 @@ public class FXMLDocumentController implements Initializable {
             
             if (count > 0) {
                 data.getData().add(new XYChart.Data(i, count));
+                line.getData().add(new XYChart.Data(i, 1));
             }
             
             if (count > maxCount) {
@@ -119,7 +122,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
         
-        data.getData().add(new XYChart.Data(paragraphs.size() - 1, 0));
+        line.getData().add(new XYChart.Data(paragraphs.size() - 1, 0));
         
         table.getItems().add("Most occurrences in a paragraph: " + Integer.toString(maxCount));
     }

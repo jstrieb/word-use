@@ -21,6 +21,7 @@ public class WordUse extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("worduse/styles.css");
         
         stage.setTitle("Word Use Analysis");
         stage.setScene(scene);
