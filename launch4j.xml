@@ -22,7 +22,7 @@
     <maxVersion></maxVersion>
     <jdkPreference>preferJre</jdkPreference>
     <runtimeBits>64/32</runtimeBits>
-    <opt>--module-path &quot;C:\Users\jacobstrieb\Downloads\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml</opt>
+    <opt>--module-path &quot;%EXEDIR%\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml</opt>
   </jre>
   <messages>
     <startupErr>An error occurred while starting the application.</startupErr>
