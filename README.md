@@ -17,3 +17,10 @@ mom.
 2. Download the [latest
    release](https://github.com/jstrieb/worduse/releases/latest/download/WordUse.zip)
 3. Unzip the downloaded release and run the executable (EXE) file
+
+
+
+# Project Status
+
+I made this as a one-off, one-night effort. I do not intend to add features or
+support it.
